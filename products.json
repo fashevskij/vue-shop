@@ -1,0 +1,41 @@
+{
+  "products":[
+    {
+      "id": 1,
+      "title": "Самсунг",
+      "description": "Лучший смартфон 2020 <em> от компании самсунг</em>",
+      "priceUah": 15000,
+      "image": "img/samsungS10.jpg",
+      "availableInventory": 5,
+      "rating": 3
+    },
+    {
+      "id": 2,
+      "title": "Самсунг",
+      "description": "Лучший смартфон 2020 <em> от компании самсунг</em>",
+      "priceUah": 15000,
+      "image": "img/note-10lite.jpg",
+      "availableInventory": 5,
+      "rating": 2
+    },
+    {
+      "id": 3,
+      "title": "Самсунг",
+      "description": "Лучший смартфон 2020 <em> от компании самсунг</em>",
+      "priceUah": 15000,
+      "image": "img/s20ultra.jpg",
+      "availableInventory": 5,
+      "rating": 5
+    },
+    {
+      "id": 4,
+      "title": "Самсунг",
+      "description": "Лучший смартфон 2020 <em> от компании самсунг</em>",
+      "priceUah": 15000,
+      "image": "img/galaxya71.jpg",
+      "availableInventory": 5,
+      "rating": 4
+    }
+
+  ]
+}
