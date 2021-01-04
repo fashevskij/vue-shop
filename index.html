@@ -29,7 +29,7 @@
         <main>
             <div v-if="showProduct" class="container">
                 <div class="row row-cols-1 row-cols-md-2 g-4">
-                    <div v-for="product in products">
+                    <div v-for="product in sortedProducts">
                         <div class="col">
                             <div class="card h-100">
                                 <img v-bind:src="product.image" class="card-img-top" alt="...">
@@ -62,91 +62,91 @@
                 </div>
             </div>
 
-                <div v-else>
-                    <div class="container">
+            <div v-else>
+                <div class="container">
+                    <div class="col-md-6">
+                        <strong>Имя:</strong>
+                        <input v-model.trim="order.firstName" class="form-control" />
+                    </div>
+                    <div class="col-md-6">
+                        <strong>Фамилия:</strong>
+                        <input v-model.trim="order.lastName" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-6"><strong>Ваш адресс:</strong></div>
                         <div class="col-md-6">
-                            <strong>Имя:</strong>
-                            <input v-model.trim="order.firstName" class="form-control" />
+                            <input v-model.trim="order.address" class="form-control" />
                         </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-6"><strong>Город:</strong></div>
                         <div class="col-md-6">
-                            <strong>Фамилия:</strong>
-                            <input v-model.trim="order.lastName" class="form-control" />
+                            <input v-model.trim="order.city" class="form-control" />
                         </div>
-                        <div class="form-group">
-                            <div class="col-md-6"><strong>Ваш адресс:</strong></div>
-                            <div class="col-md-6">
-                                <input v-model.trim="order.address" class="form-control" />
-                            </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-2">
+                            <strong>State:</strong>
+                            <select v-model="order.state" class="form-control">
+                                <option disabled value="">State</option>
+                                <option v-for="(state, key) in states" v-bind:value="state">{{key}}</option>
+                            </select>
                         </div>
-                        <div class="form-group">
-                            <div class="col-md-6"><strong>Город:</strong></div>
-                            <div class="col-md-6">
-                                <input v-model.trim="order.city" class="form-control" />
-                            </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-6 col-md-offset-4">
+                            <strong>Почтовый индекс:</strong>
+                            <input v-model.number="order.zip" class="form-control" type="number" />
                         </div>
-                        <div class="form-group">
-                            <div class="col-md-2">
-                                <strong>State:</strong>
-                                <select v-model="order.state" class="form-control">
-                                    <option disabled value="">State</option>
-                                    <option v-for="(state, key) in states" v-bind:value="state">{{key}}</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <strong>Почтовый индекс:</strong>
-                                <input v-model.number="order.zip" class="form-control" type="number" />
-                            </div>
-                        </div>
+                    </div>
 
-                        <div class="form-group">
-                            <div class="col-md-6 boxes">
-                                <input type="radio" id="home" v-bind:value="order.home" v-model="order.method">
-                                <label for="home">Домашний адресс</label>
-                                <input type="radio" id="business" v-bind:value="order.business" v-model="order.method">
-                                <label for="business">Рабочий андресс</label>
-                            </div>
+                    <div class="form-group">
+                        <div class="col-md-6 boxes">
+                            <input type="radio" id="home" v-bind:value="order.home" v-model="order.method">
+                            <label for="home">Домашний адресс</label>
+                            <input type="radio" id="business" v-bind:value="order.business" v-model="order.method">
+                            <label for="business">Рабочий андресс</label>
                         </div>
+                    </div>
 
-                        <div class="form-group">
-                            <div class="col-md-6 boxes">
-                                <input type="checkbox" id="gift" value="true" v-bind:true-value="order.sendGift"
-                                    v-bind:false-value="order.dontSendGift" v-model="order.gift">
-                                <label for="gift">Упаковать как подарок?</label>
-                            </div>
+                    <div class="form-group">
+                        <div class="col-md-6 boxes">
+                            <input type="checkbox" id="gift" value="true" v-bind:true-value="order.sendGift"
+                                v-bind:false-value="order.dontSendGift" v-model="order.gift">
+                            <label for="gift">Упаковать как подарок?</label>
                         </div>
-                        <button v-on:click="submitForm" type="submit" class="btn btn-secondary submit">Заказать</button>
-                        <div class="card" style="max-width:540px;">
-                            <div class="card-body">
-                                <ul class="list-group list-group-flush">
-                                    <li class="list-group-item">Имя: {{order.firstName}}</li>
-                                    <li class="list-group-item">Фамилия: {{order.lastName}}</li>
-                                    <li class="list-group-item">Адресс: {{order.address}}</li>
-                                    <li class="list-group-item">Город: {{order.city}}</li>
-                                    <li class="list-group-item">State: {{order.state}}</li>
-                                    <li class="list-group-item">Почтовый индекс: {{order.zip}}</li>
-                                    <li class="list-group-item">Отправка: {{order.method}}</li>
-                                    <li class="list-group-item">Подарок: {{order.gift}}</li>
-                                </ul>
-                            </div>
+                    </div>
+                    <button v-on:click="submitForm" type="submit" class="btn btn-secondary submit">Заказать</button>
+                    <div class="card" style="max-width:540px;">
+                        <div class="card-body">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">Имя: {{order.firstName}}</li>
+                                <li class="list-group-item">Фамилия: {{order.lastName}}</li>
+                                <li class="list-group-item">Адресс: {{order.address}}</li>
+                                <li class="list-group-item">Город: {{order.city}}</li>
+                                <li class="list-group-item">State: {{order.state}}</li>
+                                <li class="list-group-item">Почтовый индекс: {{order.zip}}</li>
+                                <li class="list-group-item">Отправка: {{order.method}}</li>
+                                <li class="list-group-item">Подарок: {{order.gift}}</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
-                
+            </div>
+
         </main>
     </div>
 
     <script>
-        const webstore = new Vue({//екземпляр вью
-            el: '#app',//привязка екземплра вью к эелементу с айди app
+        const webstore = new Vue({ //екземпляр вью
+            el: '#app', //привязка екземплра вью к эелементу с айди app
             data: { //Объект с данными экземпляра Vue
                 siteName: 'Смартик',
                 sitePar: 'Лучшие цены на смартфоны',
                 showProduct: true,
-                products: [],//массив товаров из json
-                cart: [],//корзина
-                order: {//данные оформления заказа
+                products: [], //массив товаров из json
+                cart: [], //корзина
+                order: { //данные оформления заказа
                     firsName: '',
                     lastName: '',
                     address: '',
@@ -188,7 +188,7 @@
                     }
                 }
             },
-            //хук жизненного цикла
+            //хук жизненного цикла для загруски из файла json продуктов 
             created: function () {
                 axios.get('./products.json').then((response) => {
                     this.products = response.data.products;
@@ -225,12 +225,26 @@
                     }
                     return count;
                 }
+
             },
             computed: { //Вычисляемые свойства, которые будут подмешаны к экземпляру Vue
                 cartItemCount: function () {
                     return this.cart.length || "";
+                },
+                //функция для сортировки продуктов по алфавитному порядку
+                sortedProducts() {
+                    if (this.products.length > 0) {
+                        let productsArray = this.products.splice(0); //преобразуем обьект в массив
+                        function compare(a, b) { //функция сравнения заголовков товаров в массиве
+                            if (a.title.toLowerCase() < b.title.toLowerCase()) return -1;
+                            if (a.title.toLowerCase() > b.title.toLowerCase()) return 1;
+                            return 0;
+                        }
+                        console.log(productsArray);
+                        console.log("HI");
+                        return productsArray.sort(compare); //возвращаем новый массив товаров
+                    }
                 }
-
             }
         });
     </script>

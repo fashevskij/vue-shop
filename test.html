@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Vue test</title>
+	<script src="https://unpkg.com/vue"></script>
+</head>
+
+<body>
+	<div id="app">
+		<my-component>
+
+		</my-component>
+		<my-component>
+
+		</my-component>
+		<my-component>
+
+		</my-component>
+	</div>
+	<div id="ap">
+		<my-component>
+
+		</my-component>
+	</div>
+	<script>
+		/*глобальный компонент
+		Vue.component('my-component', {
+			template: '<div>hello comp</div>'
+		});
+		
+		new Vue({
+			el: "#app"
+		});
+		new Vue({
+		el: "#ap"
+		});
+		*/
+		/* локальный компонент
+		const Component = {
+			template: '<div>hello comps</div>'
+		}
+		new Vue({
+		el: "#app",
+		components: {'my-component': Component}
+		});
+
+		new Vue({
+		el: "#ap",
+		components: {'my-component': Component}
+		});
+		
+		const Component = {
+		template: '<div>hello {{text}}! {{tester1}}</div>',
+		props:['text'],
+		data() {
+			return {
+				tester1: 'testing text'
+			}
+		}
+		}
+		new Vue({
+		el: "#app",
+		components: {'my-component': Component},
+		data() {
+			return {
+				message: "сообщение"
+			}
+		}
+		});*/
+
+		
+		const Component = {
+			template: '<div><button v-on:click="counter +=1">{{counter}}</button></div>',
+			data() {
+				return{
+					counter: 0
+				} 
+			}
+		}
+
+		new Vue({
+			el: "#app",
+			components: {
+				'my-component': Component
+			},
+		});
+	</script>
+</body>
+
+</html>
