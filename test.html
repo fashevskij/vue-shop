@@ -10,82 +10,42 @@
 
 <body>
 	<div id="app">
-		<my-component>
-
-		</my-component>
-		<my-component>
-
-		</my-component>
-		<my-component>
-
+		<my-component >
+		<h1>{{header}}</h1>
+			<label for="title" slot="titleSlot">{{titleLabel}}</label>
+			<label for="author" slot="authorSlot">{{authorLabel}}</label>
 		</my-component>
 	</div>
-	<div id="ap">
-		<my-component>
 
-		</my-component>
-	</div>
+
 	<script>
-		/*глобальный компонент
-		Vue.component('my-component', {
-			template: '<div>hello comp</div>'
-		});
-		
-		new Vue({
-			el: "#app"
-		});
-		new Vue({
-		el: "#ap"
-		});
-		*/
-		/* локальный компонент
 		const Component = {
-			template: '<div>hello comps</div>'
-		}
-		new Vue({
-		el: "#app",
-		components: {'my-component': Component}
-		});
-
-		new Vue({
-		el: "#ap",
-		components: {'my-component': Component}
-		});
-		
-		const Component = {
-		template: '<div>hello {{text}}! {{tester1}}</div>',
-		props:['text'],
-		data() {
-			return {
-				tester1: 'testing text'
-			}
-		}
-		}
-		new Vue({
-		el: "#app",
-		components: {'my-component': Component},
-		data() {
-			return {
-				message: "сообщение"
-			}
-		}
-		});*/
-
-		
-		const Component = {
-			template: '<div><button v-on:click="counter +=1">{{counter}}</button></div>',
-			data() {
-				return{
-					counter: 0
-				} 
-			}
+			template: `<div>
+				<form>
+					<slot></slot>
+					<slot name="titleSlot"></slot>
+					<input id="title" type="text" /><br/>
+					<slot name="authorSlot"></slot>
+					<input id="author" type="text" /><br />
+					
+					<button>subjti</button>
+				</form>
+			</div>`,
+			props: ['title', 'author']
 		}
 
 		new Vue({
-			el: "#app",
+			el: '#app',
 			components: {
-				'my-component': Component
+			'my-component': Component
 			},
+			data() {
+				return {
+					titleLabel: 'the title:',
+					authorLabel: 'the author',
+					header: 'book author'
+				}
+			}
 		});
 	</script>
 </body>
