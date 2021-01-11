@@ -14,6 +14,8 @@
           <p class="price">
             {{ product.price }}
           </p>
+          <button @click="info">Инфо о продукте</button>
+        <router-view></router-view>
         </div>
       </div>
     </div>
@@ -27,6 +29,11 @@ export default {
     data() {
       return {
         product: ''
+      }
+    },
+    methods: {
+      info() {
+        this.$router.push({name: 'Info'})
       }
     },
     created: function() {
