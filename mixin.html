@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<script src="https://unpkg.com/vue"></script>
+ <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+   integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+<html>
+
+<head>
+</head>
+
+<body>
+  <div id="app">
+    <div id="container">
+      <h1 class="text-center">{{title}}</h1>
+      <div class="row">
+        <div class="col-md-3 col-md-offset-2">
+          <my-comp1 class="comp1"></my-comp1>
+        </div>
+        <div class="col-md-3">
+          <h2 class="text-center">-----</h2>
+        </div>
+        <div class="col-md-3">
+          <my-comp2 class="comp2"></my-comp2>
+        </div>
+        <!--end col-md-2-->
+      </div><!-- end row -->
+    </div> <!-- end container -->
+  </div> <!-- end app -->
+
+  <script>
+    const myButton = {//примесь
+      methods: {//ее метод
+        pressed(val) {//функция выводящая алерт
+          alert(val);
+        }
+      },
+      data() {
+        return {
+          item: ''
+        }
+      }
+    }
+
+    const comp1 = {//обьявление первого компонента
+      template: `<div>
+    <h1>Enter Email</h1>
+    <form>
+      <div class="form-group">
+        <input v-model="item" type="email" class="form-control" placeholder="Email Address"/>
+      </div>
+      <div class="form-group">
+        <button class="btn btn-primary btn-lg" @click.prevent="pressed(item)">Press Button 1</button>
+      </div>
+    </form>
+    </div>`,
+      mixins: [myButton]//обявление примеси для компонента
+
+    }
+    const comp2 = {
+      template: `<div>
+    <h1>Enter Number</h1>
+      <form>
+        <div class="form-group">
+            <input v-model="item" class="form-control" placeholder="Phone Number"/>
+        </div>
+        <div class="form-group">
+          <button class="btn btn-warning btn-lg" @click.prevent="pressed(item)">Press Button 2</button>
+        </div>
+      </form>
+    </div>`,
+      mixins: [myButton]//обьявление примеси для компонента
+
+    }
+    new Vue({//обьявление корневого екземпляра вью
+      el: '#app',
+      data() {
+        return {
+          title: 'Mixin using two components'//функция возвращающая своиство тайтл
+        }
+      },
+      components: {//обьявление компонентов
+        myComp1: comp1,
+        myComp2: comp2
+      }
+
+    });
+  </script>
+</body>
