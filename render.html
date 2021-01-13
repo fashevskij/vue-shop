@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://unpkg.com/vue"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <my-comp header="1">Erik</my-comp>
+  </div>
+  <script>
+    Vue.component('my-comp', {
+      render(createElement) {
+        return createElement('h' + this.header, {
+            'class': 'text-center'
+
+          },
+          this.welcome + this.$slots.default[0].text)
+      },
+      data() {
+        return {
+          welcome: 'Hello World '
+        }
+      },
+      props: ['header']
+    });
+    new Vue({
+      el: "#app"
+    })
+
+  </script>
+</body>
+
+</html>
