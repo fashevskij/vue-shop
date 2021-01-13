@@ -6,8 +6,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-<script src="https://unpkg.com/vue"></script>
-<script src="https://unpkg.com/vuex"></script>
+  <script src="https://unpkg.com/vue"></script>
+  <script src="https://unpkg.com/vuex"></script>
 </head>
 
 <body>
@@ -18,42 +18,58 @@
     <button @click="increment">Press Me</button>
   </div>
 
-<script>
-const store = new Vuex.Store({//хранит информацию о состоянии
-  state: {
-    msg: "hello world",
-    count: 0
-  },
-  mutations: {
-    increment(state,playload) {//мутация инеримирующая состояние
-      state.count+= playload;
-      state.msg = state.msg +" "+ state.count;
-    }
-  }
-});
+  <script>
+    const store = new Vuex.Store({ //хранит информацию о состоянии
+      state: {
+        msg: "hello world",
+        count: 0
+      },
+      mutations: {
+        increment(state, plass) { //мутация инеримирующая состояние
+          state.count += plass;
+          state.msg = state.msg + " " + state.count;
+        }
+      },
+      getters: {
+        msg(state) {
+          return state.msg.toUpperCase();
+        },
+        count(state) {
+          return state.count;
+        }
+      },
+      actions: {
+        increment(context, playss) {
+          setTimeout(function () {
+            context.commit('increment', playss);
+          },4000);
+        }
+      }
+    });
 
-new Vue({
-  el:'#app',
-  data() {
-    return {
-      header: 'Vuex App'//отражает сообщение
-    }
-  },
-  computed: {
-    welcome() {
-      return store.state.msg;//возвращает состояние msg
-    },
-    counter(){
-      return store.state.count;//возвращает состояние count
-    }
-  },
-  methods: {
-    increment(){
-      store.commit('increment', 10)//этот метод выполняет одноименную мутацию
-    }
-  }
-})
-</script>
+    new Vue({
+      el: '#app',
+      data() {
+        return {
+          header: 'Vuex App' //отражает сообщение
+        }
+      },
+      computed: {
+        welcome() {
+          return store.getters.msg;//возвращаем геттер мсг
+        },
+        counter() {
+          return store.getters.count;
+        }
+      },
+      methods: {
+        increment() {
+          store.commit('increment', 10) //этот метод выполняет одноименную мутацию
+        }
+      }
+    })
+
+  </script>
 </body>
-</html>
 
+</html>
