@@ -74,11 +74,11 @@
 
 <script>
 import myHeader from "./Header.vue";
+import {mapGetters} from 'vuex';//импорт всех гетеров
 export default {
   name: "iMain",
   data() {
     return {
-      products: [], //массив товаров из json
       cart: [], //корзина
     };
   },
@@ -133,16 +133,15 @@ export default {
       }
     },
   },
-  created: function () {
-    axios.get("./static/products.json").then((response) => {
-      this.products = response.data.products;
-    });
+  created: function() {
+    this.$store.dispatch('initStore');//вызывает код для инициализации хранилища Vuex
   },
   computed: {
     //Вычисляемые свойства, которые будут подмешаны к экземпляру Vue
     cartItemCount: function () {
       return this.cart.length || "";
     },
+    ...mapGetters(['products']),
     //функция для сортировки продуктов по алфавитному порядку
     sortedProducts() {
       if (this.products.length > 0) {
