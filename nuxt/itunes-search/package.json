@@ -1,0 +1,32 @@
+{
+  "name": "itunes-search",
+  "version": "1.0.0",
+  "description": "Nuxt.js project",
+  "author": "fashevskij <68337800+fashevskij@users.noreply.github.com>",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate",
+    "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
+    "precommit": "npm run lint"
+  },
+  "dependencies": {
+    "axios": "^0.21.1",
+    "install": "^0.13.0",
+    "npm": "^6.14.11",
+    "nuxt": "^2.0.0",
+    "vuetify": "^2.4.2"
+  },
+  "devDependencies": {
+    "@nuxtjs/vuetify": "^1.11.2",
+    "babel-eslint": "^10.0.1",
+    "eslint": "^4.19.1",
+    "eslint-friendly-formatter": "^4.0.1",
+    "eslint-loader": "^2.1.1",
+    "eslint-plugin-vue": "^4.0.0",
+    "stylus": "^0.54.8",
+    "stylus-loader": "^4.3.2"
+  }
+}
