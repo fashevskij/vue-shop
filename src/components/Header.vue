@@ -7,19 +7,35 @@
             {{ siteName }}
           </router-link>
         </h1>
-        <button class="btn btn-light">
+        <div class="nav justify-content-end">
           <router-link
             active-class="active"
             tag="button"
-            class="btn btn-default btn-lg"
+            class="btn btn-light mx-3"
             :to="{ name: 'Form' }"
           >
-            <span class="glyphicon glyphicon-shopping-cart">{{
+            Корзина {{
               cartItemCount
-            }}</span>
-            Корзина
+            }}
           </router-link>
-        </button>
+
+        <div v-if="!mySession">
+          <button
+            type="button"
+            class="btn btn-light"
+            v-on:click="signin"
+          >
+            Sign In
+          </button>
+        </div>
+        <div v-else>
+          <button type="button" class="btn btn-light" v-on:click="signOut">
+            btn-lg"
+            <img class="photo" :src="mySession.photoURL"/>
+            Sign Out
+          </button>
+        </div>
+        </div>
       </nav>
     </header>
   </div>
